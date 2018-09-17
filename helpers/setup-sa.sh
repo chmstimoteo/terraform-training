@@ -107,4 +107,10 @@ gcloud organizations add-iam-policy-binding \
   --role="roles/resourcemanager.folderCreator" \
   --user-output-enabled false
 
+gcloud projects add-iam-policy-binding \
+  "${HOST_PROJECT}" \
+  --member="serviceAccount:${SA_ID}" \
+  --role="roles/compute.networkAdmin" \
+  --user-output-enabled false
+
 echo "All done."
