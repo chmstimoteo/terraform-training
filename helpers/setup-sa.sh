@@ -113,4 +113,27 @@ gcloud projects add-iam-policy-binding \
   --role="roles/compute.networkAdmin" \
   --user-output-enabled false
 
+gcloud alpha resource-manager folders add-iam-policy-binding \
+  "633907074872" \
+  --member="serviceAccount:${SA_ID}" \
+  --role="roles/logging.configWriter"
+
+gcloud projects add-iam-policy-binding \
+  "696335366608" \
+  --member="serviceAccount:${SA_ID}" \
+  --role="roles/iam.admin" \
+  --user-output-enabled false
+
+gcloud projects add-iam-policy-binding \
+  "${HOST_PROJECT}" \
+  --member="serviceAccount:${SA_ID}" \
+  --role="roles/serviceusage.admin" \
+  --user-output-enabled false
+
+gcloud projects add-iam-policy-binding \
+  "${HOST_PROJECT}" \
+  --member="serviceAccount:${SA_ID}" \
+  --role="roles/bigquery.admin" \
+  --user-output-enabled false
+
 echo "All done."

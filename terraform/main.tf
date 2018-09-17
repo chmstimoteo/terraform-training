@@ -26,6 +26,12 @@ resource "google_folder" "carlos-finance" {
   parent     = "organizations/${var.organization_id}"
 }
 
+resource "google_project" "my-project-in-a-folder-2" {
+  name = "My Project 3"
+  project_id = "finance-project-2"
+  folder_id  = "${google_folder.carlos-finance.name}"
+}
+
 # Folder nested under another folder.
 resource "google_folder" "team-abc" {
   display_name = "Team ABC"
@@ -55,4 +61,16 @@ resource "google_compute_subnetwork" "subnetwork" {
 resource "google_compute_shared_vpc_host_project" "shared_vpc_host" {
   count   = "${var.shared_vpc_host == "true" ? 1 : 0}"
   project = "${var.gcp_project_id}"
+}
+
+module "logsink" {
+  source           = "github.com/terraform-google-modules/terraform-google-log-export"
+  name             = "my-logsink"
+  folder           = "633907074872"
+  filter           = "resource.type = gce_instance"
+  
+  bigquery = {
+    name    = "my_logsink_bq"
+    project = "finance-project-2"
+  }
 }
