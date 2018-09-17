@@ -21,7 +21,7 @@ variable "admin_email" {
 
 variable "organization_id" {
   description = "The organization id for the associated services"
-  default = "pythian-cft-training-timoteo"
+  default = "222089017122"
 }
 
 variable "billing_account" {

@@ -18,12 +18,12 @@ provider "google" {
 # Top-level folder under an organization.
 resource "google_folder" "carlos-coorporate-it" {
   display_name = "Coorporate IT Department"
-  parent     = "organizations/222089017122"
+  parent     = "organizations/${var.organization_id}"
 }
 
 resource "google_folder" "carlos-finance" {
   display_name = "Finance Department"
-  parent     = "organizations/222089017122"
+  parent     = "organizations/${var.organization_id}"
 }
 
 # Folder nested under another folder.
